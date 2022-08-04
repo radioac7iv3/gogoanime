@@ -1,1 +1,5 @@
 node_modules
+
+# Config
+.eslintrc.json
+.prettierrc
