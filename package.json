@@ -1,0 +1,11 @@
+{
+  "name": "gogoanime-api",
+  "version": "1.0.0",
+  "description": "REST api for anime streaming",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "radioac7iv3",
+  "license": "ISC"
+}
