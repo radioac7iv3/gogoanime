@@ -1,3 +1,7 @@
+DONE:
+1. Added cdn_url
+
 TODO:
 1. set api endpoints
+  - Add Recent release
 2. Error Controllers

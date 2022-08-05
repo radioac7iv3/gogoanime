@@ -1,7 +1,8 @@
 /* eslint-disable prettier/prettier */
+require('dotenv').config({ path: './config.env' });
 const app = require('./app');
 
-const port = process.env.default_port || 3000;
+const port = 3000;
 
 // Starting Server
 const server = app.listen(port, () => {
