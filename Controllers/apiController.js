@@ -21,24 +21,19 @@ exports.recentRelease = async (req, res, page = 1, liArr = []) => {
     const root = htmlParser.parse(res.data);
     const ul = root.querySelector('.items');
 
+    let a;
+    let aType;
+    let epLink;
+    let anTitle;
+    let anSrc;
+
     ul.childNodes.forEach((el) => {
       if (el.rawTagName === 'li') {
         el.childNodes.forEach((liChild) => {
           let epNo;
-          if (liChild.rawTagName === 'p') {
-            liChild.childNodes.forEach((pEle) => {
-              if (pEle.nodeType === 3) {
-                epNo = pEle._rawText;
-              }
-            });
-          }
-
           if (liChild.rawTagName === 'div') {
             liChild.childNodes.forEach((divChild) => {
               if (divChild.rawTagName === 'a') {
-                let a;
-                let aType;
-
                 divChild.childNodes.forEach((aTag) => {
                   if (aTag.rawTagName === 'img') {
                     a = aTag.rawAttrs;
@@ -46,22 +41,35 @@ exports.recentRelease = async (req, res, page = 1, liArr = []) => {
                     aType = aTag.rawAttrs.includes('SUB') ? 'SUB' : 'DUB';
                   }
                 });
-                liArr.push({
-                  episodeLink: `${divChild.rawAttrs
-                    .split(' title')[0]
-                    .replace(/['"]+/g, '')
-                    .replace('href=', '')}`,
-                  animeTitle: `${divChild.rawAttrs
-                    .split(' title')[1]
-                    .replace(/['"=]+/g, '')}`,
-                  animeImgSrc: `${a
-                    .split(' alt')[0]
-                    .replace('src=', '')
-                    .replace(/["]+/g, '')}`,
-                  animeType: `${aType}`,
-                  episodeNum: `${epNo}`,
-                });
+                // Var Defined
+                epLink = `${divChild.rawAttrs
+                  .split(' title')[0]
+                  .replace(/['"]+/g, '')
+                  .replace('href=', '')}`;
+                anTitle = `${divChild.rawAttrs
+                  .split(' title')[1]
+                  .replace(/['"=]+/g, '')}`;
+                anSrc = `${a
+                  .split(' alt')[0]
+                  .replace('src=', '')
+                  .replace(/["]+/g, '')}`;
               }
+            });
+          }
+          if (liChild.rawTagName === 'p') {
+            liChild.childNodes.forEach((pEle) => {
+              if (pEle.nodeType === 3) {
+                epNo = pEle._rawText;
+              }
+            });
+          }
+          if (epLink && anTitle && anSrc && aType && epNo) {
+            liArr.push({
+              episodeLink: epLink,
+              animeTitle: anTitle,
+              animeImgSrc: anSrc,
+              animeType: aType,
+              episodeNum: epNo,
             });
           }
         });
