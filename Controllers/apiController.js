@@ -18,7 +18,7 @@ exports.recentRelease = async (req, res, page = 1, liArr = []) => {
     );
 
     // TODO: Parse HTML to JSON
-    const root = htmlParser.parse(res.data);
+    const root = htmlParser.parse(resp.data);
     const ul = root.querySelector('.items');
 
     let a;
@@ -74,6 +74,11 @@ exports.recentRelease = async (req, res, page = 1, liArr = []) => {
           }
         });
       }
+    });
+    res.status(200).json({
+      data: {
+        liArr,
+      },
     });
   } catch (err) {
     res.status(400).json({
