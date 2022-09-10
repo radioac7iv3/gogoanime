@@ -5,6 +5,7 @@ DONE:
   - 2. Added Popular Ongoing Release
 
 TODO:
+Soon Adding cdnUrl**
 1. set api endpoints
-  - Popular Ongoing Update
+  
 2. Error Controllers
