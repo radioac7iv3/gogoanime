@@ -2,6 +2,7 @@ DONE:
 1. Added cdn_url
 2. API-endpoints
   - 1. Added Recent Release
+  - 2. Added Popular Ongoing Release
 
 TODO:
 1. set api endpoints

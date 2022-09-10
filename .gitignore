@@ -1,6 +1,8 @@
 node_modules
+Dev
 
 # Config
 .eslintrc.json
 .prettierrc
 *.env
+.vscode
